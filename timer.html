@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer / Stopwatch</title>
+</head>
+
+
+<style>
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #460c6dbb;
+    }
+    .container{
+        text-align: center;
+        width: 350px;
+        border: none;
+        padding: 20px;
+        background-color: #0b0d27;
+        color: white;
+        border-radius: 10px;
+
+    }
+    button{
+        padding: 5px 30px;
+        border-radius: 30px;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+    button:hover{
+        background-color: gold;
+        border-color: black;
+        color: white;
+    }
+    .timer{
+        font-size: 5rem;
+        padding: 30px 0;
+        color: red;
+    }
+    .time{
+        padding: 20px 0;
+        color: red;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="timer">0 </div>
+        <button class="btn1">Start</button>
+        <button class="btn3">Stop</button>
+        <button class="btn2">Reset</button>
+        <button class="btn4">getTime</button>
+        <button class="btn5">clearTime</button>
+
+        <div class="time"></div>
+    </div>
+
+
+    <script>
+        const timer = document.querySelector('.timer')
+        const resetValue = document.querySelector('.time');
+
+        let start = 0 ;
+        let interval ;
+
+        const startTimer = () => {
+            interval = setInterval(() => {
+                timer.innerHTML = start++;
+            }, 1000);
+        }
+        
+         const stoptTimer = () => {
+            clearInterval(interval) ;
+        }
+
+        const resetTimer = () => {
+            start = 0 ;
+            timer.innerHTML = start ;
+            clearInterval(interval) ;
+        }
+         
+        const showValue = () => {
+           const p = document.createElement('p');
+           p.innerHTML = `The stop time is ${start - 1}`;
+           resetValue.append(p);
+        }
+
+        const clearValue = () => {
+            resetValue.innerHTML = '' ;
+        }
+        
+        document
+            .querySelector('.btn1')
+            .addEventListener('click', startTimer);
+
+        document
+            .querySelector('.btn2')
+            .addEventListener('click', resetTimer);
+
+        document
+            .querySelector('.btn3')
+            .addEventListener('click', stoptTimer);
+
+        document
+            .querySelector('.btn4')
+            .addEventListener('click', showValue);
+
+        document
+            .querySelector('.btn5')
+            .addEventListener('click', clearValue);
+
+    </script>
+</body>
+</html>
